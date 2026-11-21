@@ -1,0 +1,1 @@
+{ "name": "federer-watch", "private": true, "scripts": { "watch": "node watch.js" }, "dependencies": { "playwright": "^1.48.0" } }
