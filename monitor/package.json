@@ -1,1 +1,20 @@
-{ "name": "federer-watch", "private": true, "scripts": { "watch": "node watch.js" }, "dependencies": { "playwright": "^1.48.0" } }
+{
+  "name": "federer-watch",
+  "private": true,
+  "description": "Vigia de ingressos do On Clubhouse Nights (Federer x Fonseca) com alertas por WhatsApp, e-mail e push",
+  "scripts": {
+    "start": "node watch.js",
+    "test-alerts": "node watch.js --test",
+    "test": "bash test/run-test.sh"
+  },
+  "engines": {
+    "node": ">=20.12"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.16",
+    "playwright": "^1.48.0"
+  },
+  "devDependencies": {
+    "smtp-server": "^3.21.7"
+  }
+}

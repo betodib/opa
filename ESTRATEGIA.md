@@ -54,34 +54,15 @@
 
 **Se for sorteio:** inscreva-se uma vez, com dados corretos, e acompanhe o e-mail, inclusive o **spam**, na data do resultado. Muitos sorteios dão prazo curto para confirmar.
 
-## 4. O vigia automático (`monitor/watch.js`)
+## 4. O vigia automático (`monitor/`): WhatsApp, e-mail e push
 
-É um script que **só monitora e avisa**. Ele abre a página de tempos em tempos e manda notificação no celular quando:
-- aparece uma palavra como "resgatar", "garantir", "inscrição" ou "disponível";
-- ou o conteúdo da página muda.
-
-**Ele não faz o resgate sozinho, e isso é proposital.** Plataformas desse tipo costumam proibir automação nos termos de uso. Resgates feitos por robô são cancelados com frequência e a conta pode ser bloqueada. Para quem já está logado e preparado, o resgate manual leva uns 30 segundos. O que decide é **saber na hora certa**, e o vigia resolve isso.
-
-### Como usar (no seu computador)
-```bash
-# 1) Instalar uma vez
-npm i playwright
-npx playwright install chromium
-
-# 2) No celular: instale o app "ntfy" (Android/iOS) e assine um tópico com nome difícil,
-#    por exemplo federer-beto-7k2q9 (qualquer pessoa que souber o nome recebe os avisos)
-
-# 3) Rodar, passando as páginas a vigiar
-NTFY_TOPIC=federer-beto-7k2q9 node monitor/watch.js \
-  "https://www.on.com/pt-br/" \
-  "<link da página do evento, assim que aparecer>"
-```
-- Padrão: uma checagem a cada 45 segundos (mínimo de 30). Não baixe mais que isso, para não ser bloqueado e não sobrecarregar o site.
-- Para trocar as palavras vigiadas: `KEYWORDS="resgatar,esgotado,sorteio"`.
-- Quando o link oficial do evento aparecer (stories ou bio da @on.brasil), **reinicie o vigia com ele**. É a página que mais importa.
-- O Instagram não pode ser vigiado por script (exige login e bloqueia robôs). Para ele, use o **sino de notificações**.
-
-Testei o script com uma página local que mudava de "Em breve" para "resgatar seu ingresso", e o alerta disparou certo.
+Instruções completas em **[`monitor/README.md`](monitor/README.md)**. Em resumo:
+- Vigia o **site da On**, **URLs prováveis** do evento (alerta quando passam a existir), a **busca da Sympla**, os **sitemaps** da On e da Ingresse (pegam páginas novas antes da divulgação) e o **Google News e o Bing News**.
+- Todo link do evento que aparecer passa a ser **vigiado automaticamente**.
+- Os alertas vêm em níveis: 🚨 **resgate aberto** → WhatsApp, e-mail e push na hora. ⚠️ Página nova, link novo ou esgotado → WhatsApp e e-mail. 🔎 Mudanças menores → e-mail e push.
+- No dia **23/11 a partir das 6h** entra em **modo rápido** (30 s) e te avisa no WhatsApp.
+- **Não faz o resgate sozinho**, de propósito: plataformas desse tipo costumam proibir automação, cancelam resgates feitos por robô e podem bloquear a conta. O ganho real está em saber na hora.
+- Ligue **no domingo (22/11)** e rode `npm run test-alerts` para confirmar que WhatsApp e e-mail chegam.
 
 ## 5. Cuidados
 

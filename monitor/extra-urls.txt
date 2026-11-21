@@ -1,0 +1,3 @@
+# Cole aqui links novos (um por linha, opcionalmente seguido de um nome).
+# O vigia passa a vigiar no próximo ciclo, sem precisar reiniciar.
+# https://www.on.com/pt-br/algum-link-do-evento  Página oficial
